@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The bettingtools package has functions related to working with sports betting lines.
+The bettingtools package has functions related to working with sports betting lines. First, we provide functions to work with American, Decimal, and Implied odds in the tidy format.
 
 ## Installation
 

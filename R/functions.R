@@ -124,7 +124,7 @@ Implied2Dec <- function(implied, precision = 4) {
 }
 
 US2All <- function(american, precision = 4) {
-  decimal <- US2Decimal(american)
+  decimal <- US2Dec(american)
   implied <- US2Implied(american)
   return(tibble("American" = american,
                 "Decimal" = decimal,

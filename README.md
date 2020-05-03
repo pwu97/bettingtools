@@ -7,7 +7,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The bettingtools package has functions related to working with sports betting lines.
+The bettingtools package has functions related to working with sports betting lines. First, we provide functions to work with American, Decimal, and Implied odds in the tidy format.
 
 ## Installation
 
@@ -78,7 +78,13 @@ US2Dec(c(-250, 600, 137, -110))
 #> [1] 1.40 7.00 2.37 1.91
 
 US2All(c(-250, 600, 137, -110))
-#> Error in US2Decimal(american): could not find function "US2Decimal"
+#> # A tibble: 4 x 3
+#>   American Decimal Implied
+#>      <dbl>   <dbl>   <dbl>
+#> 1     -250    1.4    0.714
+#> 2      600    7      0.143
+#> 3      137    2.37   0.422
+#> 4     -110    1.91   0.524
 
 Dec2Implied(c(3.17, 2.14, 2.01, 1.67))
 #> [1] 0.3155 0.4673 0.4975 0.5988
