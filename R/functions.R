@@ -42,7 +42,7 @@ calculateImpliedProbPair <- function(pair, precision = 4) {
 }
 
 US2Dec <- function(american, precision = 2) {
-  convertAmericanToDecimalHelper <- function(one_american, precisionHelper = precision) {
+  US2DecHelper <- function(one_american, precisionHelper = precision) {
     if (one_american >= 100) {
       return(round(one_american/100 + 1, precisionHelper))
     } else if (one_american <= -100) {
@@ -52,11 +52,11 @@ US2Dec <- function(american, precision = 2) {
     }
   }
 
-  return(sapply(american, convertAmericanToDecimalHelper))
+  return(sapply(american, US2DecHelper))
 }
 
 US2Implied <- function(american, precision = 4) {
-  convertAmericanToDecimalHelper <- function(one_american, precisionHelper = precision) {
+  US2ImpliedHelper <- function(one_american, precisionHelper = precision) {
     if (one_american >= 100) {
       return(round(100/(one_american + 100), precisionHelper))
     } else if (one_american <= -100) {
@@ -66,7 +66,7 @@ US2Implied <- function(american, precision = 4) {
     }
   }
 
-  return(sapply(american, convertAmericanToDecimalHelper))
+  return(sapply(american, US2ImpliedHelper))
 }
 
 Dec2US <- function(decimal, precision = 4) {
@@ -87,7 +87,7 @@ Dec2Implied <- function(decimal, precision = 4) {
   convertDecimalToImpliedHelper <- function(one_decimal, precisionHelper = precision) {
     if ((one_decimal >= 2) |  (one_decimal < 2) & (one_decimal > 1)) {
       american <- convertDecimalToAmerican(one_decimal)
-      return(round(convertAmericanToImplied(american), precisionHelper))
+      return(round(US2Implied(american), precisionHelper))
     } else {
       return(NA)
     }
@@ -97,7 +97,7 @@ Dec2Implied <- function(decimal, precision = 4) {
 }
 
 Implied2US <- function(implied, precision = 4) {
-  convertImpliedToAmericanHelper <- function(one_implied, precisionHelper = precision) {
+  Implied2USHelper <- function(one_implied, precisionHelper = precision) {
     if ((one_implied >= 0.5) & (one_implied <= 1)) {
       return(round((100 * one_implied)/(-1 + one_implied), precisionHelper))
     } else if ((one_implied >= 0) & (one_implied < 0.5)) {
@@ -107,25 +107,41 @@ Implied2US <- function(implied, precision = 4) {
     }
   }
 
-  return(sapply(implied, convertImpliedToAmericanHelper))
+  return(sapply(implied, Implied2USHelper))
 }
 
-Implied2US <- function(implied, precision = 4) {
-  convertImpliedToDecimalHelper <- function(one_implied, precisionHelper = precision) {
+Implied2Dec <- function(implied, precision = 4) {
+  Implied2DecHelper <- function(one_implied, precisionHelper = precision) {
     if ((one_implied >= 0) & (one_implied <= 1)) {
-      american <- convertImpliedToAmerican(one_implied)
-      return(round(convertAmericanToDecimal(american), precisionHelper))
+      american <- Implied2US(one_implied)
+      return(round(US2Dec(american), precisionHelper))
     } else {
       return(NA)
     }
   }
 
-  return(sapply(implied, convertImpliedToDecimalHelper))
+  return(sapply(implied, Implied2DecHelper))
 }
 
 US2All <- function(american, precision = 4) {
-  decimal <- convertAmericanToDecimal(american)
-  implied <- convertAmericanToImplied(american)
+  decimal <- US2Decimal(american)
+  implied <- US2Implied(american)
+  return(tibble("American" = american,
+                "Decimal" = decimal,
+                "Implied" = implied))
+}
+
+Dec2All <- function(decimal, precision = 4) {
+  american <- Dec2US(decimal)
+  implied <- Dec2Implied(decimal)
+  return(tibble("American" = american,
+                "Decimal" = decimal,
+                "Implied" = implied))
+}
+
+Implied2All <- function(implied, precision = 4) {
+  american <- Implied2US(implied)
+  decimal <- Implied2Dec(implied)
   return(tibble("American" = american,
                 "Decimal" = decimal,
                 "Implied" = implied))

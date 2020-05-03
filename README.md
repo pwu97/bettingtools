@@ -65,7 +65,7 @@ calculateTheoreticalHold(c(-1500, 875), precision = 7)
 #> [1] 0.038554
 ```
 
-## Converting American to Decimal, Implied Odds
+## Converting between American, Decimal, and Implied Odds
 
 We can convert American odds to Decimal and Implied Odds.
 
@@ -74,19 +74,40 @@ We can convert American odds to Decimal and Implied Odds.
 US2Implied(c(-250, 600, 137, -110))
 #> [1] 0.7143 0.1429 0.4219 0.5238
 
-US2Implied(c(-250, 600, 137, -110), precision = 7)
-#> [1] 0.7142857 0.1428571 0.4219409 0.5238095
-
 US2Dec(c(-250, 600, 137, -110))
 #> [1] 1.40 7.00 2.37 1.91
 
 US2All(c(-250, 600, 137, -110))
+#> Error in US2Decimal(american): could not find function "US2Decimal"
+
+Dec2Implied(c(3.17, 2.14, 2.01, 1.67))
+#> [1] 0.3155 0.4673 0.4975 0.5988
+
+Dec2US(c(3.17, 2.14, 2.01, 1.67))
+#> [1]  217.0000  114.0000  101.0000 -149.2537
+
+Dec2All(c(3.17, 2.14, 2.01, 1.67))
 #> # A tibble: 4 x 3
 #>   American Decimal Implied
 #>      <dbl>   <dbl>   <dbl>
-#> 1     -250    1.4    0.714
-#> 2      600    7      0.143
-#> 3      137    2.37   0.422
-#> 4     -110    1.91   0.524
+#> 1     217     3.17   0.316
+#> 2     114     2.14   0.467
+#> 3     101     2.01   0.498
+#> 4    -149.    1.67   0.599
+
+Implied2Dec(c(.34, .54, .88, .12))
+#> [1] 2.94 1.85 1.14 8.33
+
+Implied2US(c(.34, .54, .88, .12))
+#> [1]  194.1176 -117.3913 -733.3333  733.3333
+
+Implied2All(c(.34, .54, .88, .12))
+#> # A tibble: 4 x 3
+#>   American Decimal Implied
+#>      <dbl>   <dbl>   <dbl>
+#> 1     194.    2.94    0.34
+#> 2    -117.    1.85    0.54
+#> 3    -733.    1.14    0.88
+#> 4     733.    8.33    0.12
 ```
 

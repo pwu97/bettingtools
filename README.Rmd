@@ -60,17 +60,27 @@ calculateTheoreticalHold(c(-1500, 875))
 calculateTheoreticalHold(c(-1500, 875), precision = 7)
 ```
 
-## Converting American to Decimal, Implied Odds
+## Converting between American, Decimal, and Implied Odds
 
 We can convert American odds to Decimal and Implied Odds.
 
 ```{r}
 US2Implied(c(-250, 600, 137, -110))
 
-US2Implied(c(-250, 600, 137, -110), precision = 7)
-
 US2Dec(c(-250, 600, 137, -110))
 
 US2All(c(-250, 600, 137, -110))
+
+Dec2Implied(c(3.17, 2.14, 2.01, 1.67))
+
+Dec2US(c(3.17, 2.14, 2.01, 1.67))
+
+Dec2All(c(3.17, 2.14, 2.01, 1.67))
+
+Implied2Dec(c(.34, .54, .88, .12))
+
+Implied2US(c(.34, .54, .88, .12))
+
+Implied2All(c(.34, .54, .88, .12))
 ```
 
