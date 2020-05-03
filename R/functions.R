@@ -24,9 +24,9 @@ calculateTheoreticalHold <- function(pair, precision = 4) {
 calculateZeroVigProb <- function(lines, precision = 4) {
   calculateZeroVigProbHelper <- function(line, precisionHelper = precision) {
     if (line >= 100) {
-      return(round(100/(100+line), precisionHelper))
+      return(round(100/(100 + line), precisionHelper))
     } else if (line <= -100) {
-      return(round((-1.0*line)/(100-line), precisionHelper))
+      return(round((-1.0 * line)/(100 - line), precisionHelper))
     } else {
       return(NA)
     }
@@ -38,10 +38,11 @@ calculateZeroVigProb <- function(lines, precision = 4) {
 calculateImpliedProbPair <- function(pair, precision = 4) {
   prob1 <- calculateZeroVigProb(pair[1], precision = precision)
   prob2 <- calculateZeroVigProb(pair[2], precision = precision)
-  return(c(round(prob1/(prob1+prob2), precision), round(prob2/(prob1+prob2), precision)))
+  return(c(round(prob1/(prob1 + prob2), precision),
+           round(prob2/(prob1 + prob2), precision)))
 }
 
-US2Dec <- function(american, precision = 2) {
+US2Dec <- function(american, precision = 4) {
   US2DecHelper <- function(one_american, precisionHelper = precision) {
     if (one_american >= 100) {
       return(round(one_american/100 + 1, precisionHelper))
@@ -70,7 +71,7 @@ US2Implied <- function(american, precision = 4) {
 }
 
 Dec2US <- function(decimal, precision = 4) {
-  convertDecimalToAmericanHelper <- function(one_decimal, precisionHelper = precision) {
+  Dec2USHelper <- function(one_decimal, precisionHelper = precision) {
     if (one_decimal >= 2) {
       return(round((one_decimal - 1) * 100, precisionHelper))
     } else if ((one_decimal < 2) & (one_decimal >= 1)) {
@@ -80,20 +81,20 @@ Dec2US <- function(decimal, precision = 4) {
     }
   }
 
-  return(sapply(decimal, convertDecimalToAmericanHelper))
+  return(sapply(decimal, Dec2USHelper))
 }
 
 Dec2Implied <- function(decimal, precision = 4) {
-  convertDecimalToImpliedHelper <- function(one_decimal, precisionHelper = precision) {
+  Dec2ImpliedHelper <- function(one_decimal, precisionHelper = precision) {
     if ((one_decimal >= 2) |  (one_decimal < 2) & (one_decimal > 1)) {
-      american <- convertDecimalToAmerican(one_decimal)
+      american <- Dec2US(one_decimal)
       return(round(US2Implied(american), precisionHelper))
     } else {
       return(NA)
     }
   }
 
-  return(sapply(decimal, convertDecimalToImpliedHelper))
+  return(sapply(decimal, Dec2ImpliedHelper))
 }
 
 Implied2US <- function(implied, precision = 4) {
