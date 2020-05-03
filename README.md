@@ -22,15 +22,9 @@ We can calculate the zero-vig implied probabilities of a vector of lines. The de
 
 ```r
 library(bettingtools)
-#> 
-#> Attaching package: 'bettingtools'
-#> The following objects are masked _by_ '.GlobalEnv':
-#> 
-#>     calculateImpliedProbPair, calculateTheoreticalHold, calculateZeroVigProb,
-#>     convertAmericanToDecimal
 
-calculateZeroVigProb(c(200, -180, -450, 700))
-#> [1] 0.3333 0.6429 0.8182 0.1250
+calculateZeroVigProb(c(200, -180, -450, 800))
+#> [1] 0.3333 0.6429 0.8182 0.1111
 
 calculateZeroVigProb(-237)
 #> [1] 0.7033

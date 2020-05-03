@@ -29,7 +29,7 @@ We can calculate the zero-vig implied probabilities of a vector of lines. The de
 ```{r example}
 library(bettingtools)
 
-calculateZeroVigProb(c(200, -180, -450, 700))
+calculateZeroVigProb(c(200, -180, -450, 800))
 
 calculateZeroVigProb(-237)
 
