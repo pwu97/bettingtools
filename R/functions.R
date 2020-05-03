@@ -124,24 +124,24 @@ Implied2Dec <- function(implied, precision = 4) {
 }
 
 US2All <- function(american, precision = 4) {
-  decimal <- US2Dec(american)
-  implied <- US2Implied(american)
+  decimal <- US2Dec(american, precision)
+  implied <- US2Implied(american, precision)
   return(tibble("American" = american,
                 "Decimal" = decimal,
                 "Implied" = implied))
 }
 
 Dec2All <- function(decimal, precision = 4) {
-  american <- Dec2US(decimal)
-  implied <- Dec2Implied(decimal)
+  american <- Dec2US(decimal, precision)
+  implied <- Dec2Implied(decimal, precision)
   return(tibble("American" = american,
                 "Decimal" = decimal,
                 "Implied" = implied))
 }
 
 Implied2All <- function(implied, precision = 4) {
-  american <- Implied2US(implied)
-  decimal <- Implied2Dec(implied)
+  american <- Implied2US(implied, precision)
+  decimal <- Implied2Dec(implied, precision)
   return(tibble("American" = american,
                 "Decimal" = decimal,
                 "Implied" = implied))
