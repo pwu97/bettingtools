@@ -49,3 +49,44 @@ calculateImpliedProbPair(c(1000, -800), precision = 7)
 #> [1] 0.0927835 0.9072165
 ```
 
+## Calculate theoretical hold
+
+We can calculate the theoretical hold for a two-outcome line set. This corresponds to the profit a sportsbook would expect to make were a player to bet on either side of an event with all else being equal. Contrary to popular belief, larger nominal spreads doesn't necessarily mean more profit for bookies.
+
+
+```r
+calculateTheoreticalHold(c(-110, -110))
+#> [1] 0.0454
+
+calculateTheoreticalHold(c(-1500, 875))
+#> [1] 0.0386
+
+calculateTheoreticalHold(c(-1500, 875), precision = 7)
+#> [1] 0.038554
+```
+
+## Converting American to Decimal, Implied Odds
+
+We can convert American odds to Decimal and Implied Odds.
+
+
+```r
+US2Implied(c(-250, 600, 137, -110))
+#> [1] 0.7143 0.1429 0.4219 0.5238
+
+US2Implied(c(-250, 600, 137, -110), precision = 7)
+#> [1] 0.7142857 0.1428571 0.4219409 0.5238095
+
+US2Dec(c(-250, 600, 137, -110))
+#> [1] 1.40 7.00 2.37 1.91
+
+US2All(c(-250, 600, 137, -110))
+#> # A tibble: 4 x 3
+#>   American Decimal Implied
+#>      <dbl>   <dbl>   <dbl>
+#> 1     -250    1.4    0.714
+#> 2      600    7      0.143
+#> 3      137    2.37   0.422
+#> 4     -110    1.91   0.524
+```
+
