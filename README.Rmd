@@ -37,8 +37,8 @@ calculateZeroVigProb(c(-250))
 ##  Calculate implied probabilities for two-outcome line set
 
 ```{r}
-calculateZeroVigProbPair(c(200, -220))
+calculateImpliedProbPair(c(200, -220))
 
-calculateZeroVigProbPair(c(1000, -800))
+calculateImpliedProbPair(c(1000, -800))
 ```
 

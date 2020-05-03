@@ -34,10 +34,10 @@ calculateZeroVigProb(c(-250))
 
 
 ```r
-calculateZeroVigProbPair(c(200, -220))
-#> [1] 0.327 0.673
+calculateImpliedProbPair(c(200, -220))
+#> [1] 0.3265 0.6735
 
-calculateZeroVigProbPair(c(1000, -800))
-#> [1] 0.093 0.907
+calculateImpliedProbPair(c(1000, -800))
+#> [1] 0.0928 0.9072
 ```
 
