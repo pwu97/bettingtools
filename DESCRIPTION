@@ -1,0 +1,15 @@
+Package: bettingtools
+Type: Package
+Title: Betting Tools
+Version: 0.0.0.9000
+Authors@R: c(person("Peter", "Wu", email = "wu.peter97@gmail.com", role = c("aut", "cre")))
+Maintainer: Peter Wu <wu.peter97@gmail.com>
+Description: Sports Betting Tools
+License: see LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests:
+  dplyr,
+  tidyr,
+  readr,
+  stringr
