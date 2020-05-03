@@ -39,7 +39,7 @@ calculateImpliedProbPair <- function(pair, precision = 4) {
   return(c(round(prob1/(prob1+prob2), precision), round(prob2/(prob1+prob2), precision)))
 }
 
-convertAmericanToDecimal <- function(american, precision = 4) {
+convertAmericanToDecimal <- function(american, precision = 2) {
   convertAmericanToDecimalHelper <- function(one_american, precisionHelper = precision) {
     if (one_american >= 100) {
       return(round(one_american/100 + 1, precisionHelper))
