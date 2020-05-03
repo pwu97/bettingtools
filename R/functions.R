@@ -13,10 +13,6 @@
 #   Check Package:             'Cmd + Shift + E'
 #   Test Package:              'Cmd + Shift + T'
 
-hello <- function() {
-  print("Hello, world!")
-}
-
 calculateTheoreticalHold <- function(pair, precision = 4) {
   prob1 <- calculateZeroVigProb(pair[1])
   prob2 <- calculateZeroVigProb(pair[2])
@@ -43,12 +39,12 @@ calculateImpliedProbPair <- function(pair, precision = 4) {
   return(c(round(prob1/(prob1+prob2), precision), round(prob2/(prob1+prob2), precision)))
 }
 
-convertAmericanToDecimal <- function(american) {
-  convertAmericanToDecimalHelper <- function(one_american) {
+convertAmericanToDecimal <- function(american, precision = 4) {
+  convertAmericanToDecimalHelper <- function(one_american, precisionHelper = precision) {
     if (one_american >= 100) {
-      return(round(one_american/100 + 1, 2))
+      return(round(one_american/100 + 1, precisionHelper))
     } else if (one_american <= -100) {
-      return(round(100/(-1.0 * one_american) + 1, 2))
+      return(round(100/(-1.0 * one_american) + 1, precisionHelper))
     } else {
       return(NA)
     }
