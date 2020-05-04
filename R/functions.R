@@ -15,6 +15,29 @@
 
 library(tibble)
 
+calculateKellyStake <- function(expected, payout, kelly_multiplier = 1,
+                                expected_odds = "prob",
+                                payout_odds = "dec") {
+  odds <- rep(NA, 2)
+  if (expected_odds == "prob") {
+    odds[1] <- expected
+  } else if (expected_odds == "dec") {
+    odds[1] <- Dec2Implied(expected)
+  } else if (expected_odds == "us") {
+    odds[1] <- US2Implied(expected)
+  }
+
+  if (payout_odds == "dec") {
+    odds[2] <- payout
+  } else if (payout_odds == "prob") {
+    odds[2] <- Implied2Dec(payout)
+  } else if (payout_odds == "us") {
+    odds[2] <- US2Dec(payout)
+  }
+
+  return(round(max(kelly_multiplier * ((odds[1] * odds[2] - 1)/(odds[2] - 1)), 0), 4))
+}
+
 calculateTheoreticalHold <- function(pair, precision = 4) {
   prob1 <- calculateZeroVigProb(pair[1])
   prob2 <- calculateZeroVigProb(pair[2])
@@ -42,7 +65,7 @@ calculateImpliedProbPair <- function(pair, precision = 4) {
            round(prob2/(prob1 + prob2), precision)))
 }
 
-US2Dec <- function(american, precision = 4) {
+US2Dec <- function(american, precision = 2) {
   US2DecHelper <- function(one_american, precisionHelper = precision) {
     if (one_american >= 100) {
       return(round(one_american/100 + 1, precisionHelper))
@@ -111,7 +134,7 @@ Implied2US <- function(implied, precision = 4) {
   return(sapply(implied, Implied2USHelper))
 }
 
-Implied2Dec <- function(implied, precision = 4) {
+Implied2Dec <- function(implied, precision = 2) {
   Implied2DecHelper <- function(one_implied, precisionHelper = precision) {
     if ((one_implied >= 0) & (one_implied <= 1)) {
       american <- Implied2US(one_implied)

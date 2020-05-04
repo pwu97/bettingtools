@@ -22,6 +22,24 @@ The bettingtools package has functions related to working with sports betting li
 remotes::install_github("pwu97/bettingtools")
 ```
 
+## Calculate single Kelly stake
+
+We can calculate the percentage of one's bankroll one should bet to maximize the expected growth of one's bankroll on a single bet. Given an expected win probability, payout odds, and an optional Kelly multiplier factor, we can calculate one's optimal single Kelly stake. Note that default odds for the expected win probability is implied probability and the default odds for the payout is in decimal. We can change them accordingly to how we see fit by specifying additional parameters in our function.
+
+```{r}
+calculateKellyStake(0.53, 1.92)
+
+calculateKellyStake(0.41, 2.56)
+
+calculateKellyStake(0.70, -150, kelly_multiplier = 0.1, payout_odds = "us")
+
+calculateKellyStake(0.26, 367, payout_odds = "us")
+
+# Optimal move is to not place a bet
+calculateKellyStake(0.26, -110, payout_odds = "us")
+```
+
+
 ## Calculate zero-vig implied probabilities
 
 We can calculate the zero-vig implied probabilities of a vector of lines. The default precision is set to 4 digits. Note that we can set the precision.
