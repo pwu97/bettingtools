@@ -41,6 +41,18 @@ calculateKellyStake(0.26, 367, payout_odds = "us")
 calculateKellyStake(0.26, -110, payout_odds = "us")
 ```
 
+## Calculate all possible win-loss outcomes given probabilities
+
+We return a tibble where each row is one possible outcome we can observe from a list of given probabilities.
+
+```{r}
+calculateWinRanges(c(.1, .4, .88, .47))
+
+calculateWinRanges(c(.12, .462, .29))
+
+calculateWinRanges(c(.6, .6, .6, .6))
+```
+
 
 ## Calculate zero-vig implied probabilities
 

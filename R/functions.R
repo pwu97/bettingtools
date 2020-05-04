@@ -15,6 +15,29 @@
 
 library(tibble)
 
+calculateWinRanges <- function(probabilities) {
+  win_probs <- rep(NA, length(probabilities) + 1)
+
+  # W = 0
+  win_probs[1] <- prod(1 - probabilities)
+  # W = 1 to length(probabilities)
+  for (i in 1:length(probabilities)) {
+    mat <- combn(probabilities, i)
+    cur_prob <- 0
+    for (j in 1:ncol(mat)) {
+      win_vectors <- mat[, j]
+      loss_vectors <- win_probs[1]/prod(1 - win_vectors)
+      cur_prob <- cur_prob + prod(win_vectors) * prod(loss_vectors)
+    }
+    win_probs[i+1] <- cur_prob
+  }
+
+  # Create return tibble
+  return(tibble("W" = c(0:length(probabilities)),
+                "L" = rev(c(0:length(probabilities))),
+                "Probability" = win_probs))
+}
+
 calculateKellyStake <- function(expected, payout, kelly_multiplier = 1,
                                 expected_odds = "prob",
                                 payout_odds = "dec") {
