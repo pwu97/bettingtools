@@ -21,6 +21,8 @@ We can calculate the percentage of one's bankroll one should bet to maximize the
 
 
 ```r
+library(bettingtools)
+
 calculateKellyStake(0.53, 1.92)
 #> [1] 0.0191
 
@@ -45,8 +47,6 @@ We can calculate the zero-vig implied probabilities of a vector of lines. The de
 
 
 ```r
-library(bettingtools)
-
 calculateZeroVigProb(c(200, -180, -450, 800))
 #> [1] 0.3333 0.6429 0.8182 0.1111
 
