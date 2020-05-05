@@ -17,11 +17,17 @@ remotes::install_github("pwu97/bettingtools")
 
 ## Calculate single Kelly stake
 
-We can calculate the percentage of one's bankroll one should bet to maximize the expected growth of one's bankroll on a single bet. Given an expected win probability, payout odds, and an optional Kelly multiplier factor, we can calculate one's optimal single Kelly stake. Note that default odds for the expected win probability is implied probability and the default odds for the payout is in decimal. We can change them accordingly to how we see fit by specifying additional parameters in our function.
+We can calculate the percentage of one's bankroll one should bet to maximize the expected growth of one's bankroll on a single bet. Given an expected win probability, payout odds, and an optional Kelly multiplier factor, we can calculate one's optimal single Kelly stake. Note that default odds for the expected win probability is implied probability ("prob") and the default odds for the payout is in decimal ("dec"). We can change them accordingly to how we see fit by specifying additional parameters in our function ("prob", "dec", or "us").
 
 
 ```r
 library(bettingtools)
+#> 
+#> Attaching package: 'bettingtools'
+#> The following objects are masked _by_ '.GlobalEnv':
+#> 
+#>     calculateImpliedProbPair, calculateTheoreticalHold, calculateZeroVigProb,
+#>     Dec2Implied, Dec2US, Implied2US, US2All, US2Dec, US2Implied
 
 calculateKellyStake(0.53, 1.92)
 #> [1] 0.0191
@@ -29,11 +35,13 @@ calculateKellyStake(0.53, 1.92)
 calculateKellyStake(0.41, 2.56)
 #> [1] 0.0318
 
+# Getting a bet at +150 when it is expected to hit at -120
+calculateKellyStake(-120, 150, expected_odds = "us", payout_odds = "us")
+#> [1] 0.2425
+
+# Getting a bet at -150 when expected probability is 70% at a 10% kelly multiplier.
 calculateKellyStake(0.70, -150, kelly_multiplier = 0.1, payout_odds = "us")
 #> [1] 0.0252
-
-calculateKellyStake(0.26, 367, payout_odds = "us")
-#> [1] 0.0584
 
 # Optimal move is to not place a bet
 calculateKellyStake(0.26, -110, payout_odds = "us")
@@ -47,33 +55,13 @@ We return a tibble where each row is one possible outcome we can observe from a 
 
 ```r
 calculateWinRanges(c(.1, .4, .88, .47))
-#> # A tibble: 5 x 3
-#>       W     L Probability
-#>   <int> <int>       <dbl>
-#> 1     0     4      0.0343
-#> 2     1     3      0.309 
-#> 3     2     2      0.445 
-#> 4     3     1      0.195 
-#> 5     4     0      0.0165
+#> Error in tibble(W = c(0:length(probabilities)), L = rev(c(0:length(probabilities))), : could not find function "tibble"
 
 calculateWinRanges(c(.12, .462, .29))
-#> # A tibble: 4 x 3
-#>       W     L Probability
-#>   <int> <int>       <dbl>
-#> 1     0     3      0.336 
-#> 2     1     2      0.472 
-#> 3     2     1      0.176 
-#> 4     3     0      0.0161
+#> Error in tibble(W = c(0:length(probabilities)), L = rev(c(0:length(probabilities))), : could not find function "tibble"
 
 calculateWinRanges(c(.6, .6, .6, .6))
-#> # A tibble: 5 x 3
-#>       W     L Probability
-#>   <int> <int>       <dbl>
-#> 1     0     4      0.0256
-#> 2     1     3      0.154 
-#> 3     2     2      0.346 
-#> 4     3     1      0.346 
-#> 5     4     0      0.130
+#> Error in tibble(W = c(0:length(probabilities)), L = rev(c(0:length(probabilities))), : could not find function "tibble"
 ```
 
 
@@ -138,13 +126,7 @@ US2Dec(c(-250, 600, 137, -110))
 #> [1] 1.40 7.00 2.37 1.91
 
 US2All(c(-250, 600, 137, -110))
-#> # A tibble: 4 x 3
-#>   American Decimal Implied
-#>      <dbl>   <dbl>   <dbl>
-#> 1     -250    1.4    0.714
-#> 2      600    7      0.143
-#> 3      137    2.37   0.422
-#> 4     -110    1.91   0.524
+#> Error in tibble(American = american, Decimal = decimal, Implied = implied): could not find function "tibble"
 
 Dec2Implied(c(3.17, 2.14, 2.01, 1.67))
 #> [1] 0.3155 0.4673 0.4975 0.5988
@@ -153,13 +135,7 @@ Dec2US(c(3.17, 2.14, 2.01, 1.67))
 #> [1]  217.0000  114.0000  101.0000 -149.2537
 
 Dec2All(c(3.17, 2.14, 2.01, 1.67))
-#> # A tibble: 4 x 3
-#>   American Decimal Implied
-#>      <dbl>   <dbl>   <dbl>
-#> 1     217     3.17   0.316
-#> 2     114     2.14   0.467
-#> 3     101     2.01   0.498
-#> 4    -149.    1.67   0.599
+#> Error in tibble(American = american, Decimal = decimal, Implied = implied): could not find function "tibble"
 
 Implied2Dec(c(.34, .54, .88, .12))
 #> [1] 2.94 1.85 1.14 8.33
@@ -168,12 +144,6 @@ Implied2US(c(.34, .54, .88, .12))
 #> [1]  194.1176 -117.3913 -733.3333  733.3333
 
 Implied2All(c(.34, .54, .88, .12))
-#> # A tibble: 4 x 3
-#>   American Decimal Implied
-#>      <dbl>   <dbl>   <dbl>
-#> 1     194.    2.94    0.34
-#> 2    -117.    1.85    0.54
-#> 3    -733.    1.14    0.88
-#> 4     733.    8.33    0.12
+#> Error in tibble(American = american, Decimal = decimal, Implied = implied): could not find function "tibble"
 ```
 
