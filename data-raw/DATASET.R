@@ -47,7 +47,32 @@ mlb_odds_2019 <- read_csv("~/Downloads/mlb_odds_2019.csv") %>%
          open_ou_odds = `X21`,
          close_ou_odds = `X23`) %>%
   clean_names() %>%
-  mutate(open_ml = as.numeric(open_ml))
+  mutate(open_ml = as.numeric(open_ml)) %>%
+  group_by(date, game) %>%
+  mutate(home_team = rev(team),
+         home_name = rev(name),
+         home_final = rev(final),
+         home_open_ml = rev(open_ml),
+         home_close_ml = rev(close_ml),
+         home_run_line = rev(run_line),
+         home_run_line_odds = rev(run_line_odds),
+         open_ou_line = rev(open_ou_line),
+         open_ou_odds = rev(open_ou_odds),
+         close_ou_line = rev(close_ou_line),
+         close_ou_odds = rev(close_ou_odds)) %>%
+  select(date, game, away_team = team, home_team, away_name = name,
+         home_name, away_score = final, home_score = home_final,
+         away_open_ml = open_ml, home_open_ml,
+         away_close_ml = close_ml, home_close_ml,
+         away_run_line = run_line, home_run_line,
+         away_run_line_odds = run_line_odds, home_run_line_odds,
+         open_ou_line, open_ou_line,
+         open_ou_odds, open_ou_odds,
+         close_ou_line, close_ou_line,
+         close_ou_odds,
+         close_ou_odds) %>%
+  filter(row_number() %% 2 == 1) %>%
+  ungroup()
 
 # 2019 MLB Odds Dataset
 usethis::use_data(mlb_odds_2019, overwrite = TRUE)

@@ -24,22 +24,26 @@ remotes::install_github("pwu97/bettingtools")
 
 ## Analyze 2019 MLB Historical Odds
 
-IGNORE THIS WRONG PART. WILL FIX LATER.
-
-Inside the `bettingtools` package is the 2019 MLB historical odds dataset where we can utilize functions in this package to answer interesting questions such as what percentage of games had total over/under movement or the average closing moneyline.
+Inside the `bettingtools` package is the 2019 MLB historical odds dataset where we can utilize functions in this package to answer interesting questions such as what percentage of games had total over/under movement or the average away/home closing moneyline. We can see that home teams tended to be favored more often, on average, than away teams.
 
 ```{r}
 library(bettingtools)
 
-# What was the average run line movement for games there were movement?
+# What is the average O/U movement for games in which there was line movement?
 mlb_odds_2019 %>%
   mutate(ou_movement = close_ou_line - open_ou_line) %>%
   filter(ou_movement != 0) %>%
-  summarize(pct_ou_movement = mean(ou_movement)/2)
+  summarize(mean_ou_movement = mean(ou_movement))
 
-# What was the average moneyline movement?
+# What is the average away closing moneyline?
 mlb_odds_2019 %>%
-  summarize(avg_close_ml = mean(close_ml)) 
+  mutate(away_implied = US2Implied(away_close_ml)) %>%
+  summarize(avg_away_closing_ml = Implied2US(mean(away_implied)))
+
+# What is the average home closing moneyline?
+mlb_odds_2019 %>%
+  mutate(home_implied = US2Implied(home_close_ml)) %>%
+  summarize(avg_home_closing_ml = Implied2US(mean(home_implied)))
 ```
 
 
