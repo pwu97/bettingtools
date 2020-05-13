@@ -46,7 +46,8 @@ mlb_odds_2019 <- read_csv("~/Downloads/mlb_odds_2019.csv") %>%
          run_line_odds = `X19`,
          open_ou_odds = `X21`,
          close_ou_odds = `X23`) %>%
-  clean_names()
+  clean_names() %>%
+  mutate(open_ml = as.numeric(open_ml))
 
 # 2019 MLB Odds Dataset
 usethis::use_data(mlb_odds_2019, overwrite = TRUE)
