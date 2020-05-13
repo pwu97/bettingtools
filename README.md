@@ -17,7 +17,9 @@ remotes::install_github("pwu97/bettingtools")
 
 ## Analyze 2019 MLB Historical Odds
 
-Inside the `bettingtools` package is the 2019 MLB historical odds dataset where we can utilize functions in this package to answer interesting questions about the average over/under line movement or the average closing moneyline.
+IGNORE THIS WRONG PART. WILL FIX LATER.
+
+Inside the `bettingtools` package is the 2019 MLB historical odds dataset where we can utilize functions in this package to answer interesting questions such as what percentage of games had total over/under movement or the average closing moneyline.
 
 
 ```r
@@ -27,11 +29,11 @@ library(bettingtools)
 mlb_odds_2019 %>%
   mutate(ou_movement = close_ou_line - open_ou_line) %>%
   filter(ou_movement != 0) %>%
-  summarize(average_ou_movement = mean(ou_movement))
+  summarize(pct_ou_movement = mean(ou_movement)/2)
 #> # A tibble: 1 x 1
-#>   average_ou_movement
-#>                 <dbl>
-#> 1             -0.0166
+#>   pct_ou_movement
+#>             <dbl>
+#> 1        -0.00830
 
 # What was the average moneyline movement?
 mlb_odds_2019 %>%
