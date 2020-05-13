@@ -33,17 +33,20 @@ library(bettingtools)
 mlb_odds_2019 %>%
   mutate(ou_movement = close_ou_line - open_ou_line) %>%
   filter(ou_movement != 0) %>%
-  summarize(mean_ou_movement = mean(ou_movement))
+  summarize(mean_ou_movement = mean(ou_movement)) %>%
+  pull(mean_ou_movement)
 
 # What is the average away closing moneyline?
 mlb_odds_2019 %>%
   mutate(away_implied = US2Implied(away_close_ml)) %>%
-  summarize(avg_away_closing_ml = Implied2US(mean(away_implied)))
+  summarize(avg_away_closing_ml = Implied2US(mean(away_implied))) %>%
+  pull(avg_away_closing_ml)
 
 # What is the average home closing moneyline?
 mlb_odds_2019 %>%
   mutate(home_implied = US2Implied(home_close_ml)) %>%
-  summarize(avg_home_closing_ml = Implied2US(mean(home_implied)))
+  summarize(avg_home_closing_ml = Implied2US(mean(home_implied))) %>%
+  pull(avg_home_closing_ml)
 ```
 
 
