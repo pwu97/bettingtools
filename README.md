@@ -15,6 +15,34 @@ The bettingtools package has functions related to working with sports betting li
 remotes::install_github("pwu97/bettingtools")
 ```
 
+## Analyze 2019 MLB Historical Odds
+
+Inside the `bettingtools` package is the 2019 MLB historical odds dataset where we can utilize functions in this package to answer interesting questions about the average over/under line movement or the average closing moneyline.
+
+
+```r
+library(bettingtools)
+
+# What was the average run line movement for games there were movement?
+mlb_odds_2019 %>%
+  mutate(ou_movement = close_ou_line - open_ou_line) %>%
+  filter(ou_movement != 0) %>%
+  summarize(average_ou_movement = mean(ou_movement))
+#> # A tibble: 1 x 1
+#>   average_ou_movement
+#>                 <dbl>
+#> 1             -0.0166
+
+# What was the average moneyline movement?
+mlb_odds_2019 %>%
+  summarize(avg_close_ml = mean(close_ml)) 
+#> # A tibble: 1 x 1
+#>   avg_close_ml
+#>          <dbl>
+#> 1        -13.9
+```
+
+
 ## Calculate single Kelly stake
 
 We can calculate the percentage of one's bankroll one should bet to maximize the expected growth of one's bankroll on a single bet. Given an expected win probability, payout odds, and an optional Kelly multiplier factor, we can calculate one's optimal single Kelly stake. Note that default odds for the expected win probability is implied probability ("prob") and the default odds for the payout is in decimal ("dec"). We can change them accordingly to how we see fit by specifying additional parameters in our function ("prob", "dec", "us").
