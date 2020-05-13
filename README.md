@@ -127,6 +127,25 @@ calculateTheoreticalHold(c(-1500, 875), precision = 7)
 #> [1] 0.038554
 ```
 
+## Convert American or Decimal Odds to Zero-Vig Fair Odds
+
+We can convert a pair of American or Decimal odds to the fair zero-vig counterpart by calculating the individual zero-vig probabilities and then normalizing them. 
+
+
+```r
+US2Fair(c(265, -375))
+#> [1]  288.1988 -288.1988
+
+US2Fair(c(150, -200))
+#> [1]  166.6667 -166.6667
+
+Dec2Fair(c(2.14, 1.86))
+#> [1]  115.0538 -115.0538
+
+Dec2Fair(c(4.00, 1.51))
+#> [1]  264.9635 -264.9635
+```
+
 ## Converting between American, Decimal, and Implied Odds
 
 We can convert between American, Decimal, and Implied Odds.

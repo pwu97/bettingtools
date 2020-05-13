@@ -1,18 +1,3 @@
-# Hello, world!
-#
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
-#
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Build and Reload Package:  'Cmd + Shift + B'
-#   Check Package:             'Cmd + Shift + E'
-#   Test Package:              'Cmd + Shift + T'
-
 library(tibble)
 
 calculateWinRanges <- function(probabilities) {
@@ -116,6 +101,13 @@ US2Implied <- function(american, precision = 4) {
   return(sapply(american, US2ImpliedHelper))
 }
 
+US2Fair <- function(american, precision = 4) {
+  prob1 <- calculateImpliedProbPair(american, precision)[1]
+  prob2 <- calculateImpliedProbPair(american, precision)[2]
+
+  return(c(Implied2US(prob1, precision), Implied2US(prob2, precision)))
+}
+
 Dec2US <- function(decimal, precision = 4) {
   Dec2USHelper <- function(one_decimal, precisionHelper = precision) {
     if (one_decimal >= 2) {
@@ -141,6 +133,14 @@ Dec2Implied <- function(decimal, precision = 4) {
   }
 
   return(sapply(decimal, Dec2ImpliedHelper))
+}
+
+Dec2Fair <- function(decimal, precision = 4) {
+  american <- Dec2US(decimal)
+  prob1 <- calculateImpliedProbPair(american, precision)[1]
+  prob2 <- calculateImpliedProbPair(american, precision)[2]
+
+  return(c(Implied2US(prob1, precision), Implied2US(prob2, precision)))
 }
 
 Implied2US <- function(implied, precision = 4) {
