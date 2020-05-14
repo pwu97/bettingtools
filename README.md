@@ -60,7 +60,7 @@ mlb_2019_ml_chart <- avg_2019_mlb_ml %>%
        title = "What was the average moneyline for each team during\nthe 2019 MLB Season?")
 ```
 
-![2019 Average MLB Moneylines]("mlb_2019_ml_chart.jpg")
+![2019 Average MLB Moneylines](mlb_2019_ml_chart.jpg)
 
 
 ```r

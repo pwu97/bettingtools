@@ -67,7 +67,7 @@ mlb_2019_ml_chart <- avg_2019_mlb_ml %>%
 
 ```
 
-![2019 Average MLB Moneylines]("mlb_2019_ml_chart.jpg")
+![2019 Average MLB Moneylines](mlb_2019_ml_chart.jpg)
 
 ```{r}
 # What is the average O/U movement for games in which there was line movement?
