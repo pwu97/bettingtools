@@ -60,7 +60,7 @@ avg_2019_mlb_ml %>%
        title = "What was the average moneyline for each team during\nthe 2019 MLB Season?")
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="400px" />
+<img src="man/figures/README-unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="1000px" />
 
 ```r
 

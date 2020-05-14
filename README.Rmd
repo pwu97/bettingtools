@@ -26,7 +26,7 @@ remotes::install_github("pwu97/bettingtools")
 
 Inside the `bettingtools` package is the 2019 MLB historical odds dataset, `mlb_odds_2019`, where we can utilize functions in this package to answer interesting questions such as what percentage of games had total over/under movement or the average away/home closing moneyline. We can see that home teams tended to be favored more often, on average, than away teams.
 
-```{r out.width = "400px"}
+```{r out.width = "1000px"}
 library(bettingtools)
 
 mlb_colors <- teamcolors::teamcolors %>%
