@@ -1,5 +1,9 @@
 library(tibble)
 library(dplyr)
+library(ggplot2)
+library(teamcolors)
+library(forcats)
+theme_set(theme_light())
 
 #' @title Calculate probabilities of all win possibilities
 #'

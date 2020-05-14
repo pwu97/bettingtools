@@ -29,6 +29,42 @@ Inside the `bettingtools` package is the 2019 MLB historical odds dataset, `mlb_
 ```{r}
 library(bettingtools)
 
+mlb_colors <- teamcolors::teamcolors %>%
+  filter(league == "mlb") %>%
+  rename(team = name) %>%
+  select(team, primary)
+
+away_team_lines <- mlb_odds_2019 %>%
+  select(away_name, away_close_ml) %>%
+  mutate(implied_ml = US2Implied(away_close_ml)) %>%
+  rename(team = away_name) %>%
+  select(team, implied_ml)
+
+home_team_lines <- mlb_odds_2019 %>%
+  select(home_name, home_close_ml) %>%
+  mutate(implied_ml = US2Implied(home_close_ml)) %>%
+  rename(team = home_name) %>%
+  select(team, implied_ml)
+
+avg_2019_mlb_ml <- rbind(away_team_lines, home_team_lines) %>%
+  group_by(team) %>%
+  summarize(avg_implied_ml = mean(implied_ml),
+            avg_ml_line = Implied2US(mean(implied_ml))) %>%
+  left_join(mlb_colors, by = "team") %>%
+  arrange(desc(avg_ml_line)) %>%
+  slice(-n()) %>%
+  mutate(team = fct_reorder(team, avg_ml_line, .desc = TRUE),
+         primary = fct_reorder(primary, avg_ml_line, .desc = TRUE))
+
+# Generate moneyline bar chart
+avg_2019_mlb_ml %>%
+  ggplot(aes(x = team, y = avg_ml_line, label = avg_ml_line)) +
+  geom_col(fill = avg_2019_mlb_ml$primary) +
+  coord_flip() +
+  labs(y = "Average Moneyline",
+       x = "Team Name",
+       title = "What was the average moneyline for each team during the 2019 MLB Season?")
+
 # What is the average O/U movement for games in which there was line movement?
 mlb_odds_2019 %>%
   mutate(ou_movement = close_ou_line - open_ou_line) %>%
