@@ -1,5 +1,6 @@
 library(Lahman)
 library(janitor)
+library(dplyr)
 
 # Create team abbreviation and full name data frame
 team_abb <- Teams %>%
@@ -60,8 +61,10 @@ mlb_odds_2019 <- read_csv("~/Downloads/mlb_odds_2019.csv") %>%
          open_ou_odds = rev(open_ou_odds),
          close_ou_line = rev(close_ou_line),
          close_ou_odds = rev(close_ou_odds)) %>%
-  select(date, game, away_team = team, home_team, away_name = name,
-         home_name, away_score = final, home_score = home_final,
+  ungroup() %>%
+  select(date, game, away_abbrev = team, home_abbrev = home_team,
+         away_name = name, home_name, away_score = final,
+         home_score = home_final,
          away_open_ml = open_ml, home_open_ml,
          away_close_ml = close_ml, home_close_ml,
          away_run_line = run_line, home_run_line,
@@ -71,8 +74,8 @@ mlb_odds_2019 <- read_csv("~/Downloads/mlb_odds_2019.csv") %>%
          close_ou_line, close_ou_line,
          close_ou_odds,
          close_ou_odds) %>%
-  filter(row_number() %% 2 == 1) %>%
-  ungroup()
+  filter(row_number() %% 2 == 1)
 
 # 2019 MLB Odds Dataset
 usethis::use_data(mlb_odds_2019, overwrite = TRUE)
+

@@ -11,6 +11,7 @@ LazyData: true
 Suggests:
   dplyr,
   tibble,
-  tidyr,
   readr,
-  stringr
+  stringr,
+  lubridate
+RoxygenNote: 7.0.2

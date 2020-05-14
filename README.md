@@ -7,7 +7,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The bettingtools package has functions related to working with sports betting lines. First, we provide functions to work with American, Decimal, and Implied odds in the tidy format.
+The bettingtools package has functions related to working with sports betting lines. First, we provide functions to work with American, Decimal, and Implied odds in the tidy format. Next, we provide functions to work with sports betting lines such as calculating zero-vig probabilities, theoretical hold, and the optimal single Kelly stake bet. Furthermore, the package comes with tidy datasets for historical NBA (work in progress), MLB, NFL (work in progress), and NHL (work in progress) Vegas lines for moneylines, point totals, and point spreads.
 
 ## Installation
 
@@ -17,7 +17,7 @@ remotes::install_github("pwu97/bettingtools")
 
 ## Analyze 2019 MLB Historical Odds
 
-Inside the `bettingtools` package is the 2019 MLB historical odds dataset where we can utilize functions in this package to answer interesting questions such as what percentage of games had total over/under movement or the average away/home closing moneyline. We can see that home teams tended to be favored more often, on average, than away teams.
+Inside the `bettingtools` package is the 2019 MLB historical odds dataset, `mlb_odds_2019`, where we can utilize functions in this package to answer interesting questions such as what percentage of games had total over/under movement or the average away/home closing moneyline. We can see that home teams tended to be favored more often, on average, than away teams.
 
 
 ```r
