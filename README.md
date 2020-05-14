@@ -51,7 +51,7 @@ avg_2019_mlb_ml <- rbind(away_team_lines, home_team_lines) %>%
          primary = fct_reorder(primary, avg_ml_line, .desc = TRUE))
 
 # Generate moneyline bar chart
-avg_2019_mlb_ml %>%
+mlb_2019_ml_chart <- avg_2019_mlb_ml %>%
   ggplot(aes(x = team, y = avg_ml_line, label = avg_ml_line)) +
   geom_col(fill = avg_2019_mlb_ml$primary) +
   coord_flip() +
@@ -60,10 +60,10 @@ avg_2019_mlb_ml %>%
        title = "What was the average moneyline for each team during\nthe 2019 MLB Season?")
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="1000px" />
+![2019 Average MLB Moneylines](mlb_2019_ml_chart.jpg)
+
 
 ```r
-
 # What is the average O/U movement for games in which there was line movement?
 mlb_odds_2019 %>%
   mutate(ou_movement = close_ou_line - open_ou_line) %>%
