@@ -13,5 +13,7 @@ Suggests:
   tibble,
   readr,
   stringr,
-  lubridate
+  lubridate,
+  teamcolors,
+  ggplot2
 RoxygenNote: 7.0.2

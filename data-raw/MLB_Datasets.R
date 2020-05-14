@@ -201,6 +201,9 @@ mlb_odds_2017 <- read_csv("~/Downloads/mlb_odds_2017.csv") %>%
          close_ou_odds,
          close_ou_odds) %>%
   filter(row_number() %% 2 == 1)
+# Edge case
+mlb_odds_2017$away_name[is.na(mlb_odds_2017$away_name)] <- "Los Angeles Dodgers"
+mlb_odds_2017$home_name[is.na(mlb_odds_2017$home_name)] <- "Los Angeles Dodgers"
 
 # Create MLB 2016 odds data frame
 mlb_odds_2016 <- read_csv("~/Downloads/mlb_odds_2016.csv") %>%
@@ -244,6 +247,8 @@ mlb_odds_2016 <- read_csv("~/Downloads/mlb_odds_2016.csv") %>%
          close_ou_odds,
          close_ou_odds) %>%
   filter(row_number() %% 2 == 1)
+mlb_odds_2016$away_name[is.na(mlb_odds_2016$away_name)] <- "Los Angeles Dodgers"
+mlb_odds_2016$home_name[is.na(mlb_odds_2016$home_name)] <- "Los Angeles Dodgers"
 
 # Create MLB 2015 odds data frame
 mlb_odds_2015 <- read_csv("~/Downloads/mlb_odds_2015.csv") %>%
@@ -287,6 +292,8 @@ mlb_odds_2015 <- read_csv("~/Downloads/mlb_odds_2015.csv") %>%
          close_ou_odds,
          close_ou_odds) %>%
   filter(row_number() %% 2 == 1)
+mlb_odds_2015$away_name[is.na(mlb_odds_2015$away_name)] <- "Los Angeles Dodgers"
+mlb_odds_2015$home_name[is.na(mlb_odds_2015$home_name)] <- "Los Angeles Dodgers"
 
 # Create MLB 2014 odds data frame
 mlb_odds_2014 <- read_csv("~/Downloads/mlb_odds_2014.csv") %>%
@@ -330,6 +337,8 @@ mlb_odds_2014 <- read_csv("~/Downloads/mlb_odds_2014.csv") %>%
          close_ou_odds,
          close_ou_odds) %>%
   filter(row_number() %% 2 == 1)
+mlb_odds_2014$away_name[is.na(mlb_odds_2014$away_name)] <- "Los Angeles Dodgers"
+mlb_odds_2014$home_name[is.na(mlb_odds_2014$home_name)] <- "Los Angeles Dodgers"
 
 # MLB Odds Datasets
 usethis::use_data(mlb_odds_2019, overwrite = TRUE)
@@ -338,3 +347,4 @@ usethis::use_data(mlb_odds_2017, overwrite = TRUE)
 usethis::use_data(mlb_odds_2016, overwrite = TRUE)
 usethis::use_data(mlb_odds_2015, overwrite = TRUE)
 usethis::use_data(mlb_odds_2014, overwrite = TRUE)
+

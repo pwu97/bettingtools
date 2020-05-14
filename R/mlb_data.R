@@ -1,0 +1,198 @@
+#' 2019 MLB Historical Vegas Lines
+#'
+#' Dataset containing historical 2019 MLB Vegas lines on moneylines, point totals,
+#' and point spreads.
+#'
+#' @docType data
+#' @format
+#' \describe{
+#'    \item{date}{Date of MLB game}
+#'    \item{game}{Game number}
+#'    \item{away_abbrev}{Abbreviation of away team}
+#'    \item{home_abbrev}{Abbreviation of home team}
+#'    \item{away_name}{Away team full name}
+#'    \item{home_name}{Home team full name}
+#'    \item{away_score}{Away team score}
+#'    \item{home_score}{Home team score}
+#'    \item{away_open_ml}{Away team opening moneyline in American odds format}
+#'    \item{home_open_ml}{Home team opening moneyline in American odds format}
+#'    \item{away_close_ml}{Away team closing moneyline in American odds format}
+#'    \item{home_close_ml}{Home team closing moneyline in American odds format}
+#'    \item{away_run_line}{Away team run line}
+#'    \item{home_run_line}{Home team run line}
+#'    \item{away_run_line_odds}{Away team run line odds in American odds format}
+#'    \item{home_run_line_odds}{Home team run line odds in American odds format}
+#'    \item{open_ou_line}{Opening over/under line}
+#'    \item{open_ou_odds}{Opening over/under odds in American odds format}
+#'    \item{close_ou_line}{Closing over/under line}
+#'    \item{close_ou_odds}{Closing over/under odds in American odds format}
+#' }
+#'
+#' @source \url{https://sportsbookreviewsonline.com/scoresoddsarchives/mlb/}
+"mlb_odds_2019"
+
+#' 2018 MLB Historical Vegas Lines
+#'
+#' Dataset containing historical 2018 MLB Vegas lines on moneylines, point totals,
+#' and point spreads.
+#'
+#' @docType data
+#' @format
+#' \describe{
+#'    \item{date}{Date of MLB game}
+#'    \item{game}{Game number}
+#'    \item{away_abbrev}{Abbreviation of away team}
+#'    \item{home_abbrev}{Abbreviation of home team}
+#'    \item{away_name}{Away team full name}
+#'    \item{home_name}{Home team full name}
+#'    \item{away_score}{Away team score}
+#'    \item{home_score}{Home team score}
+#'    \item{away_open_ml}{Away team opening moneyline in American odds format}
+#'    \item{home_open_ml}{Home team opening moneyline in American odds format}
+#'    \item{away_close_ml}{Away team closing moneyline in American odds format}
+#'    \item{home_close_ml}{Home team closing moneyline in American odds format}
+#'    \item{away_run_line}{Away team run line}
+#'    \item{home_run_line}{Home team run line}
+#'    \item{away_run_line_odds}{Away team run line odds in American odds format}
+#'    \item{home_run_line_odds}{Home team run line odds in American odds format}
+#'    \item{open_ou_line}{Opening over/under line}
+#'    \item{open_ou_odds}{Opening over/under odds in American odds format}
+#'    \item{close_ou_line}{Closing over/under line}
+#'    \item{close_ou_odds}{Closing over/under odds in American odds format}
+#' }
+#'
+#' @source \url{https://sportsbookreviewsonline.com/scoresoddsarchives/mlb/}
+"mlb_odds_2018"
+
+#' 2017 MLB Historical Vegas Lines
+#'
+#' Dataset containing historical 2017 MLB Vegas lines on moneylines, point totals,
+#' and point spreads.
+#'
+#' @docType data
+#' @format
+#' \describe{
+#'    \item{date}{Date of MLB game}
+#'    \item{game}{Game number}
+#'    \item{away_abbrev}{Abbreviation of away team}
+#'    \item{home_abbrev}{Abbreviation of home team}
+#'    \item{away_name}{Away team full name}
+#'    \item{home_name}{Home team full name}
+#'    \item{away_score}{Away team score}
+#'    \item{home_score}{Home team score}
+#'    \item{away_open_ml}{Away team opening moneyline in American odds format}
+#'    \item{home_open_ml}{Home team opening moneyline in American odds format}
+#'    \item{away_close_ml}{Away team closing moneyline in American odds format}
+#'    \item{home_close_ml}{Home team closing moneyline in American odds format}
+#'    \item{away_run_line}{Away team run line}
+#'    \item{home_run_line}{Home team run line}
+#'    \item{away_run_line_odds}{Away team run line odds in American odds format}
+#'    \item{home_run_line_odds}{Home team run line odds in American odds format}
+#'    \item{open_ou_line}{Opening over/under line}
+#'    \item{open_ou_odds}{Opening over/under odds in American odds format}
+#'    \item{close_ou_line}{Closing over/under line}
+#'    \item{close_ou_odds}{Closing over/under odds in American odds format}
+#' }
+#'
+#' @source \url{https://sportsbookreviewsonline.com/scoresoddsarchives/mlb/}
+"mlb_odds_2017"
+
+#' 2016 MLB Historical Vegas Lines
+#'
+#' Dataset containing historical 2016 MLB Vegas lines on moneylines, point totals,
+#' and point spreads.
+#'
+#' @docType data
+#' @format
+#' \describe{
+#'    \item{date}{Date of MLB game}
+#'    \item{game}{Game number}
+#'    \item{away_abbrev}{Abbreviation of away team}
+#'    \item{home_abbrev}{Abbreviation of home team}
+#'    \item{away_name}{Away team full name}
+#'    \item{home_name}{Home team full name}
+#'    \item{away_score}{Away team score}
+#'    \item{home_score}{Home team score}
+#'    \item{away_open_ml}{Away team opening moneyline in American odds format}
+#'    \item{home_open_ml}{Home team opening moneyline in American odds format}
+#'    \item{away_close_ml}{Away team closing moneyline in American odds format}
+#'    \item{home_close_ml}{Home team closing moneyline in American odds format}
+#'    \item{away_run_line}{Away team run line}
+#'    \item{home_run_line}{Home team run line}
+#'    \item{away_run_line_odds}{Away team run line odds in American odds format}
+#'    \item{home_run_line_odds}{Home team run line odds in American odds format}
+#'    \item{open_ou_line}{Opening over/under line}
+#'    \item{open_ou_odds}{Opening over/under odds in American odds format}
+#'    \item{close_ou_line}{Closing over/under line}
+#'    \item{close_ou_odds}{Closing over/under odds in American odds format}
+#' }
+#'
+#' @source \url{https://sportsbookreviewsonline.com/scoresoddsarchives/mlb/}
+"mlb_odds_2016"
+
+#' 2015 MLB Historical Vegas Lines
+#'
+#' Dataset containing historical 2015 MLB Vegas lines on moneylines, point totals,
+#' and point spreads.
+#'
+#' @docType data
+#' @format
+#' \describe{
+#'    \item{date}{Date of MLB game}
+#'    \item{game}{Game number}
+#'    \item{away_abbrev}{Abbreviation of away team}
+#'    \item{home_abbrev}{Abbreviation of home team}
+#'    \item{away_name}{Away team full name}
+#'    \item{home_name}{Home team full name}
+#'    \item{away_score}{Away team score}
+#'    \item{home_score}{Home team score}
+#'    \item{away_open_ml}{Away team opening moneyline in American odds format}
+#'    \item{home_open_ml}{Home team opening moneyline in American odds format}
+#'    \item{away_close_ml}{Away team closing moneyline in American odds format}
+#'    \item{home_close_ml}{Home team closing moneyline in American odds format}
+#'    \item{away_run_line}{Away team run line}
+#'    \item{home_run_line}{Home team run line}
+#'    \item{away_run_line_odds}{Away team run line odds in American odds format}
+#'    \item{home_run_line_odds}{Home team run line odds in American odds format}
+#'    \item{open_ou_line}{Opening over/under line}
+#'    \item{open_ou_odds}{Opening over/under odds in American odds format}
+#'    \item{close_ou_line}{Closing over/under line}
+#'    \item{close_ou_odds}{Closing over/under odds in American odds format}
+#' }
+#'
+#' @source \url{https://sportsbookreviewsonline.com/scoresoddsarchives/mlb/}
+"mlb_odds_2015"
+
+
+#' 2014 MLB Historical Vegas Lines
+#'
+#' Dataset containing historical 2014 MLB Vegas lines on moneylines, point totals,
+#' and point spreads.
+#'
+#' @docType data
+#' @format
+#' \describe{
+#'    \item{date}{Date of MLB game}
+#'    \item{game}{Game number}
+#'    \item{away_abbrev}{Abbreviation of away team}
+#'    \item{home_abbrev}{Abbreviation of home team}
+#'    \item{away_name}{Away team full name}
+#'    \item{home_name}{Home team full name}
+#'    \item{away_score}{Away team score}
+#'    \item{home_score}{Home team score}
+#'    \item{away_open_ml}{Away team opening moneyline in American odds format}
+#'    \item{home_open_ml}{Home team opening moneyline in American odds format}
+#'    \item{away_close_ml}{Away team closing moneyline in American odds format}
+#'    \item{home_close_ml}{Home team closing moneyline in American odds format}
+#'    \item{away_run_line}{Away team run line}
+#'    \item{home_run_line}{Home team run line}
+#'    \item{away_run_line_odds}{Away team run line odds in American odds format}
+#'    \item{home_run_line_odds}{Home team run line odds in American odds format}
+#'    \item{open_ou_line}{Opening over/under line}
+#'    \item{open_ou_odds}{Opening over/under odds in American odds format}
+#'    \item{close_ou_line}{Closing over/under line}
+#'    \item{close_ou_odds}{Closing over/under odds in American odds format}
+#' }
+#'
+#' @source \url{https://sportsbookreviewsonline.com/scoresoddsarchives/mlb/}
+"mlb_odds_2014"

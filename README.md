@@ -22,6 +22,9 @@ Inside the `bettingtools` package is the 2019 MLB historical odds dataset, `mlb_
 
 ```r
 library(bettingtools)
+library(teamcolors)
+library(ggplot2)
+library(dplyr)
 
 mlb_colors <- teamcolors::teamcolors %>%
   filter(league == "mlb") %>%
