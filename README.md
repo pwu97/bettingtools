@@ -17,29 +17,14 @@ remotes::install_github("pwu97/bettingtools")
 
 ## Analyze 2019 MLB Historical Odds
 
-Inside the `bettingtools` package is the 2019 MLB historical odds dataset, `mlb_odds_2019`, where we can utilize functions in this package to answer interesting questions such as what percentage of games had total over/under movement or the average away/home closing moneyline. We can see that home teams tended to be favored more often, on average, than away teams.
+Inside the `bettingtools` package is the 2019 MLB historical odds dataset, `mlb_odds_2019`, where we can utilize functions in this package to answer interesting questions such as what was the average moneyline for games in the 2019 MLB season using a bar chart.
 
 
 ```r
 library(bettingtools)
-#> 
-#> Attaching package: 'bettingtools'
-#> The following objects are masked _by_ '.GlobalEnv':
-#> 
-#>     calculateImpliedProbPair, calculateKellyStake, calculateTheoreticalHold,
-#>     calculateWinRanges, calculateZeroVigProb, Dec2All, Dec2Fair, Dec2Implied, Dec2US,
-#>     Implied2All, Implied2Dec, Implied2US, US2All, US2Dec, US2Fair, US2Implied
 library(teamcolors)
 library(ggplot2)
 library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 library(forcats)
 theme_set(theme_light())
 
@@ -81,6 +66,8 @@ mlb_2019_ml_chart <- avg_2019_mlb_ml %>%
 ```
 
 ![2019 Average MLB Moneylines](mlb_2019_ml_chart.jpg)
+
+We can also, for example, calculate the average over/under movement for games or the average away/home closing moneyline. We can see that home teams tended to be favored more often, on average, than away teams.
 
 
 ```r
