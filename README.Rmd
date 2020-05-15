@@ -31,6 +31,8 @@ library(bettingtools)
 library(teamcolors)
 library(ggplot2)
 library(dplyr)
+library(forcats)
+theme_set(theme_light())
 
 mlb_colors <- teamcolors::teamcolors %>%
   filter(league == "mlb") %>%

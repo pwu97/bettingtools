@@ -22,9 +22,26 @@ Inside the `bettingtools` package is the 2019 MLB historical odds dataset, `mlb_
 
 ```r
 library(bettingtools)
+#> 
+#> Attaching package: 'bettingtools'
+#> The following objects are masked _by_ '.GlobalEnv':
+#> 
+#>     calculateImpliedProbPair, calculateKellyStake, calculateTheoreticalHold,
+#>     calculateWinRanges, calculateZeroVigProb, Dec2All, Dec2Fair, Dec2Implied, Dec2US,
+#>     Implied2All, Implied2Dec, Implied2US, US2All, US2Dec, US2Fair, US2Implied
 library(teamcolors)
 library(ggplot2)
 library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+library(forcats)
+theme_set(theme_light())
 
 mlb_colors <- teamcolors::teamcolors %>%
   filter(league == "mlb") %>%
