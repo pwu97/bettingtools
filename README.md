@@ -9,6 +9,8 @@
 
 The bettingtools package has functions related to working with sports betting lines. First, we provide functions to work with American, Decimal, and Implied odds in the tidy format. Next, we provide functions to work with sports betting lines such as calculating zero-vig probabilities, theoretical hold, and the optimal single Kelly stake bet. Furthermore, the package comes with tidy datasets for historical NBA (work in progress), MLB, NFL (work in progress), and NHL (work in progress) Vegas lines for moneylines, point totals, and point spreads.
 
+These functions take inspiration from posts by "Ganchrow" on the Sportsbook Review forum.
+
 ## Installation
 
 ``` r
@@ -22,13 +24,6 @@ Inside the `bettingtools` package is the 2019 MLB historical odds dataset, `mlb_
 
 ```r
 library(bettingtools)
-#> 
-#> Attaching package: 'bettingtools'
-#> The following objects are masked _by_ '.GlobalEnv':
-#> 
-#>     calculateImpliedProbPair, calculateKellyStake, calculateTheoreticalHold,
-#>     calculateWinRanges, calculateZeroVigProb, Dec2All, Dec2Fair, Dec2Implied, Dec2US,
-#>     Implied2All, Implied2Dec, Implied2US, US2All, US2Dec, US2Fair, US2Implied
 library(teamcolors)
 library(tidyverse)
 library(forcats)
