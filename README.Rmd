@@ -100,8 +100,14 @@ mlb_odds_2019 %>%
 
 # Are closing moneylines sharper than opening moneylines?
 mlb_odds_2019 %>%
-  mutate(fav_team_won_open = ifelse((((away_score > home_score) & (away_open_ml < home_open_ml)) | ((away_score < home_score) & (away_open_ml > home_open_ml))), 1, 0),
-         fav_team_won_close = ifelse((((away_score > home_score) & (away_close_ml < home_close_ml)) | ((away_score < home_score) & (away_close_ml > home_close_ml))), 1, 0)) %>%
+  mutate(fav_team_won_open = ifelse((((away_score > home_score) & 
+                                      (away_open_ml < home_open_ml)) |
+                                     ((away_score < home_score) & 
+                                      (away_open_ml > home_open_ml))), 1, 0),
+         fav_team_won_close = ifelse((((away_score > home_score) & 
+                                      (away_close_ml < home_close_ml)) |
+                                     ((away_score < home_score) & 
+                                      (away_close_ml > home_close_ml))), 1, 0)) %>%
   summarize(pct_fav_team_won_open = mean(fav_team_won_open, na.rm = TRUE),
             pct_fav_team_won_close = mean(fav_team_won_close, na.rm = TRUE),
             pct_diff = pct_fav_team_won_close - pct_fav_team_won_open)
