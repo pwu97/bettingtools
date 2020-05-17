@@ -105,13 +105,13 @@ mlb_odds_2019 %>%
                                       (away_close_ml < home_close_ml)) |
                                      ((away_score < home_score) & 
                                       (away_close_ml > home_close_ml))), 1, 0)) %>%
-  summarize(pct_fav_team_won_open = mean(fav_team_won_open, na.rm = TRUE),
-            pct_fav_team_won_close = mean(fav_team_won_close, na.rm = TRUE),
-            pct_diff = pct_fav_team_won_close - pct_fav_team_won_open)
+  summarize(pct_fav_won_open = mean(fav_team_won_open, na.rm = TRUE),
+            pct_fav_won_close = mean(fav_team_won_close, na.rm = TRUE),
+            pct_diff = pct_fav_won_close - pct_fav_won_open)
 #> # A tibble: 1 x 3
-#>   pct_fav_team_won_open pct_fav_team_won_close pct_diff
-#>                   <dbl>                  <dbl>    <dbl>
-#> 1                 0.573                  0.592   0.0191
+#>   pct_fav_won_open pct_fav_won_close pct_diff
+#>              <dbl>             <dbl>    <dbl>
+#> 1            0.573             0.592   0.0191
 ```
 
 ## Calculate single Kelly stake
