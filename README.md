@@ -22,9 +22,15 @@ Inside the `bettingtools` package is the 2019 MLB historical odds dataset, `mlb_
 
 ```r
 library(bettingtools)
+#> 
+#> Attaching package: 'bettingtools'
+#> The following objects are masked _by_ '.GlobalEnv':
+#> 
+#>     calculateImpliedProbPair, calculateKellyStake, calculateTheoreticalHold,
+#>     calculateWinRanges, calculateZeroVigProb, Dec2All, Dec2Fair, Dec2Implied, Dec2US,
+#>     Implied2All, Implied2Dec, Implied2US, US2All, US2Dec, US2Fair, US2Implied
 library(teamcolors)
-library(ggplot2)
-library(dplyr)
+library(tidyverse)
 library(forcats)
 theme_set(theme_light())
 
@@ -53,7 +59,8 @@ avg_2019_mlb_ml <- rbind(away_team_lines, home_team_lines) %>%
   arrange(desc(avg_ml_line)) %>%
   slice(-n()) %>%
   mutate(team = fct_reorder(team, avg_ml_line, .desc = TRUE),
-         primary = fct_reorder(primary, avg_ml_line, .desc = TRUE))
+         primary = fct_reorder(primary, avg_ml_line, .desc = TRUE)) %>%
+  ungroup()
 
 # Generate moneyline bar chart
 mlb_2019_ml_chart <- avg_2019_mlb_ml %>%
@@ -67,7 +74,7 @@ mlb_2019_ml_chart <- avg_2019_mlb_ml %>%
 
 ![2019 Average MLB Moneylines](mlb_2019_ml_chart.jpg)
 
-We can also, for example, calculate the average over/under movement for games or the average away/home closing moneyline. We can see that home teams tended to be favored more often, on average, than away teams.
+We can also, for example, calculate the average over/under movement, the average away/home closing moneyline, and whether the closing moneylines are sharper than the opening moneylines given by Vegas, on average. We can see that home teams tended to be favored more often, on average, than away teams. Furthermore, there is also evidence that closing moneylines were indeed sharper than opening moneylines by about 2%.
 
 
 ```r
@@ -92,8 +99,19 @@ mlb_odds_2019 %>%
   summarize(avg_home_closing_ml = Implied2US(mean(home_implied))) %>%
   pull(avg_home_closing_ml)
 #> [1] -119.2058
-```
 
+# Are closing moneylines sharper than opening moneylines?
+mlb_odds_2019 %>%
+  mutate(fav_team_won_open = ifelse((((away_score > home_score) & (away_open_ml < home_open_ml)) | ((away_score < home_score) & (away_open_ml > home_open_ml))), 1, 0),
+         fav_team_won_close = ifelse((((away_score > home_score) & (away_close_ml < home_close_ml)) | ((away_score < home_score) & (away_close_ml > home_close_ml))), 1, 0)) %>%
+  summarize(pct_fav_team_won_open = mean(fav_team_won_open, na.rm = TRUE),
+            pct_fav_team_won_close = mean(fav_team_won_close, na.rm = TRUE),
+            pct_diff = pct_fav_team_won_close - pct_fav_team_won_open)
+#> # A tibble: 1 x 3
+#>   pct_fav_team_won_open pct_fav_team_won_close pct_diff
+#>                   <dbl>                  <dbl>    <dbl>
+#> 1                 0.573                  0.592   0.0191
+```
 
 ## Calculate single Kelly stake
 
