@@ -39,10 +39,10 @@ calculateWinRanges <- function(probabilities) {
                 "Probability" = win_probs))
 }
 
-#' @title Calculates a single Kelly stake
+#' @title Calculates single Kelly stakes
 #'
-#' @description Returns the single Kelly stake. This is the percentage of one's bankroll
-#' one should bet to maximize the expected growth of one's bankroll on a single bet.
+#' @description Returns a vector of single Kelly stake. This is the percentage of one's
+#' bankroll one should bet to maximize the expected growth of one's bankroll on a single bet.
 #' This is known as the single Kelly stake.
 #'
 #' @param expected A numerical value representing the odds of the expected payout.
@@ -54,7 +54,7 @@ calculateWinRanges <- function(probabilities) {
 #' @param payout_odds A string representing the odds format of the actual payout.
 #' It is either "prob", "dec", or "us". The default odds format is in decimal odds.
 #'
-#' @return The single Kelly stake.
+#' @return The vector of single Kelly stakes.
 #'
 #' @examples
 #' calculateKellyStake(0.41, 2.56)
@@ -64,29 +64,42 @@ calculateWinRanges <- function(probabilities) {
 #' calculateKellyStake(0.70, -150, kelly_multiplier = 0.1, payout_odds = "us")
 #'
 #' calculateKellyStake(0.26, -110, payout_odds = "us")
+#'
+#' calculateKellyStake(c(0.41, 0.89, 0.24), c(-103, 780, 400), payout_odds = "us")
 calculateKellyStake <- function(expected, payout, kelly_multiplier = 1,
                                 expected_odds = "prob",
-                                payout_odds = "dec") {
-  odds <- rep(NA, 2)
-  if (expected_odds == "prob") {
-    odds[1] <- expected
-  } else if (expected_odds == "dec") {
-    odds[1] <- Dec2Implied(expected)
-  } else if (expected_odds == "us") {
-    odds[1] <- US2Implied(expected)
+                                payout_odds = "dec",
+                                precision = 4) {
+  # Calculate a single Kelly stake
+  calculateKellyStakeHelper <- function(expected_helper, payout_helper) {
+    odds <- rep(NA, 2)
+    if (expected_odds == "prob") {
+      odds[1] <- expected_helper
+    } else if (expected_odds == "dec") {
+      odds[1] <- Dec2Implied(expected_helper)
+    } else if (expected_odds == "us") {
+      odds[1] <- US2Implied(expected_helper)
+    }
+
+    if (payout_odds == "dec") {
+      odds[2] <- payout_helper
+    } else if (payout_odds == "prob") {
+      odds[2] <- Implied2Dec(payout_helper)
+    } else if (payout_odds == "us") {
+      odds[2] <- US2Dec(payout_helper)
+    }
+
+    return(round(max(kelly_multiplier *
+                     ((odds[1] * odds[2] - 1)/(odds[2] - 1)), 0), precision))
   }
 
-  if (payout_odds == "dec") {
-    odds[2] <- payout
-  } else if (payout_odds == "prob") {
-    odds[2] <- Implied2Dec(payout)
-  } else if (payout_odds == "us") {
-    odds[2] <- US2Dec(payout)
+  # Prepare the vector to return
+  result <- c()
+  for (i in 1:length(expected)) {
+    result <- c(result, calculateKellyStakeHelper(expected[i], payout[i]))
   }
-
-  return(round(max(kelly_multiplier * ((odds[1] * odds[2] - 1)/(odds[2] - 1)), 0), 4))
+  return(result)
 }
-
 
 #' @title Calculates the theoretical hold
 #'

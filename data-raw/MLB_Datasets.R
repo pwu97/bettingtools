@@ -1,8 +1,11 @@
+####################################################################################
+# Load packages
 library(Lahman)
 library(janitor)
 library(dplyr)
 library(readr)
 
+####################################################################################
 # Create team abbreviation and full name data frame
 team_abb <- Teams %>%
   data.frame() %>%
@@ -23,6 +26,7 @@ team_abb$Team[26] <- "STL"
 team_abb$Team[27] <- "TAM"
 team_abb$Name[13] <- "Los Angeles Angels"
 
+####################################################################################
 # Functions to convert dates in historical MLB lines data frame
 convert_date_to_full_2019 <- function(date) {
   month <- date %/% 100
@@ -73,6 +77,7 @@ convert_date_to_full_2013 <- function(date) {
   parse_date(paste("2013", month, day), "%Y %m %d")
 }
 
+####################################################################################
 # Create MLB 2019 odds data frame
 mlb_odds_2019 <- read_csv("~/Downloads/mlb_odds_2019.csv") %>%
   left_join(team_abb, by = "Team") %>%
@@ -114,8 +119,10 @@ mlb_odds_2019 <- read_csv("~/Downloads/mlb_odds_2019.csv") %>%
          close_ou_line, close_ou_line,
          close_ou_odds,
          close_ou_odds) %>%
-  filter(row_number() %% 2 == 1)
+  filter(row_number() %% 2 == 1) %>%
+  tibble()
 
+####################################################################################
 # Create MLB 2018 odds data frame
 mlb_odds_2018 <- read_csv("~/Downloads/mlb_odds_2018.csv") %>%
   left_join(team_abb, by = "Team") %>%
@@ -159,6 +166,7 @@ mlb_odds_2018 <- read_csv("~/Downloads/mlb_odds_2018.csv") %>%
          close_ou_odds) %>%
   filter(row_number() %% 2 == 1)
 
+####################################################################################
 # Create MLB 2017 odds data frame
 mlb_odds_2017 <- read_csv("~/Downloads/mlb_odds_2017.csv") %>%
   left_join(team_abb, by = "Team") %>%
@@ -205,6 +213,7 @@ mlb_odds_2017 <- read_csv("~/Downloads/mlb_odds_2017.csv") %>%
 mlb_odds_2017$away_name[is.na(mlb_odds_2017$away_name)] <- "Los Angeles Dodgers"
 mlb_odds_2017$home_name[is.na(mlb_odds_2017$home_name)] <- "Los Angeles Dodgers"
 
+####################################################################################
 # Create MLB 2016 odds data frame
 mlb_odds_2016 <- read_csv("~/Downloads/mlb_odds_2016.csv") %>%
   left_join(team_abb, by = "Team") %>%
@@ -247,9 +256,11 @@ mlb_odds_2016 <- read_csv("~/Downloads/mlb_odds_2016.csv") %>%
          close_ou_odds,
          close_ou_odds) %>%
   filter(row_number() %% 2 == 1)
+# Edge case
 mlb_odds_2016$away_name[is.na(mlb_odds_2016$away_name)] <- "Los Angeles Dodgers"
 mlb_odds_2016$home_name[is.na(mlb_odds_2016$home_name)] <- "Los Angeles Dodgers"
 
+####################################################################################
 # Create MLB 2015 odds data frame
 mlb_odds_2015 <- read_csv("~/Downloads/mlb_odds_2015.csv") %>%
   left_join(team_abb, by = "Team") %>%
@@ -292,9 +303,11 @@ mlb_odds_2015 <- read_csv("~/Downloads/mlb_odds_2015.csv") %>%
          close_ou_odds,
          close_ou_odds) %>%
   filter(row_number() %% 2 == 1)
+# Edge case
 mlb_odds_2015$away_name[is.na(mlb_odds_2015$away_name)] <- "Los Angeles Dodgers"
 mlb_odds_2015$home_name[is.na(mlb_odds_2015$home_name)] <- "Los Angeles Dodgers"
 
+####################################################################################
 # Create MLB 2014 odds data frame
 mlb_odds_2014 <- read_csv("~/Downloads/mlb_odds_2014.csv") %>%
   left_join(team_abb, by = "Team") %>%
@@ -337,9 +350,11 @@ mlb_odds_2014 <- read_csv("~/Downloads/mlb_odds_2014.csv") %>%
          close_ou_odds,
          close_ou_odds) %>%
   filter(row_number() %% 2 == 1)
+# Edge case
 mlb_odds_2014$away_name[is.na(mlb_odds_2014$away_name)] <- "Los Angeles Dodgers"
 mlb_odds_2014$home_name[is.na(mlb_odds_2014$home_name)] <- "Los Angeles Dodgers"
 
+####################################################################################
 # MLB Odds Datasets
 usethis::use_data(mlb_odds_2019, overwrite = TRUE)
 usethis::use_data(mlb_odds_2018, overwrite = TRUE)
@@ -347,4 +362,3 @@ usethis::use_data(mlb_odds_2017, overwrite = TRUE)
 usethis::use_data(mlb_odds_2016, overwrite = TRUE)
 usethis::use_data(mlb_odds_2015, overwrite = TRUE)
 usethis::use_data(mlb_odds_2014, overwrite = TRUE)
-
