@@ -159,22 +159,25 @@ calculateZeroVigProb <- function(lines, precision = 4) {
 #'
 #' @description Returns a vector of implied probabilities
 #'
-#' @param pair A vector representing the two outcomes in American odds format.
+#' @param pair A vector representing the several (n >= 2) outcomes in American odds format.
 #' @param precision A numerical value representing the precision. The default precision
 #' is set to 4 digits.
 #'
 #' @return A vector representing the implied probabilites
 #'
 #' @examples
-#' calculateImpliedProbPair(c(200, -220))
+#' calculateNormalizedImplied(c(1000, -800), precision = 7)
 #'
-#' calculateImpliedProbPair(c(1000, -800))
-#'
-#' calculateImpliedProbPair(c(1000, -800), precision = 7)
-calculateImpliedProbPair <- function(pair, precision = 4) {
-  prob1 <- calculateZeroVigProb(pair[1], precision = precision)
-  prob2 <- calculateZeroVigProb(pair[2], precision = precision)
-  return(c(round(prob1/(prob1 + prob2), precision),
-           round(prob2/(prob1 + prob2), precision)))
+#' calculateNormalizedImplied(c(427, -213, 336))
+calculateNormalizedImplied <- function(input, precision = 4) {
+  probs <- rep(NA, length(input))
+  for (i in 1:length(input)) {
+    probs[i] <- calculateZeroVigProb(input[i], precision = precision)
+  }
+  for (i in 1:length(input)) {
+    probs[i] <- round(probs[i]/sum(probs), precision)
+  }
+
+  return(probs)
 }
 

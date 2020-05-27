@@ -196,18 +196,18 @@ calculateZeroVigProb(-237, precision = 7)
 
 ##  Calculate implied probabilities for two-outcome line set
 
-We can calculate the implied probabilities for two lines by first calculating the zero-vig implied probabilities for both of them, and then normalizing them. Again, we can set the precision. 
+We can calculate the implied probabilities for two or more lines by first calculating the zero-vig implied probabilities for both of them, and then normalizing them. Again, we can set the precision. 
 
 
 ```r
-calculateImpliedProbPair(c(200, -220))
-#> [1] 0.3265 0.6735
+calculateNormalizedImplied(c(1000, -800), precision = 7)
+#> [1] 0.0927835 0.9054843
 
-calculateImpliedProbPair(c(1000, -800))
-#> [1] 0.0928 0.9072
+calculateNormalizedImplied(c(200, -220))
+#> [1] 0.3265 0.6780
 
-calculateImpliedProbPair(c(1000, -800), precision = 7)
-#> [1] 0.0927835 0.9072165
+calculateNormalizedImplied(c(427, -213, 336))
+#> [1] 0.1726 0.6286 0.2226
 ```
 
 ## Calculate theoretical hold
